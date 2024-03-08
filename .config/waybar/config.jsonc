@@ -1,0 +1,127 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 0,
+    "modules-left": [
+        "custom/terminal",
+        "custom/browser",
+        "custom/ai",
+        "custom/keyboard",
+        "clock",
+        "hyprland/workspaces"
+    ],
+    "modules-center": ["hyprland/window"],
+    "modules-right": [ 
+        "backlight",
+        "pulseaudio",
+        "pulseaudio#microphone",
+        "network",
+        "bluetooth",
+        "battery",
+        "custom/powermenu"
+    ],
+    
+    "custom/powermenu": {
+        "format": "⏻",
+        "on-click": "alacritty -e wlogout",
+        "signal": 8
+    },
+    "custom/terminal": {
+        "format": "",
+        "on-click": "alacritty",
+        "tooltip-format": "Terminal",
+        "signal": 12
+    },
+    "custom/browser": {
+        "format": "",
+        "on-click": "brave",
+        "signal": 12
+    },
+    "custom/ai": {
+        "format": "",
+        "on-click": "brave --app=https://www.phind.com/search?home=true",
+        "tooltip": true,
+        "signal": 12
+    },
+    "custom/keyboard": {
+        "format": "",
+        "on-click": "bash ~/.config/hypr/scripts/keybindings.sh",
+        "signal": 12
+    },
+    "clock": {
+        "format": "{: %R   %d/%m}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", ""],
+        "on-scroll-up": "brightnessctl set 1%+",
+        "on-scroll-down": "brightnessctl set 1%-",
+        "min-length": 6
+    }, 
+    "bluetooth": {
+      "states": {
+        "connected": true,
+        "disconnected": false
+      },
+      "format": "{icon}",
+      "on-click": "blueman-manager",
+      "format-icons": {
+        "connected": "",
+        "disconnected": ""
+      }
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": [ "", "", "", "", "" ]
+    },
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click": "alacritty -e sudo nmtui"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "tooltip": false,
+        "format-muted": " Muted",
+        "on-click": "pamixer -t",
+        "on-scroll-up": "pamixer -i 5",
+        "on-scroll-down": "pamixer -d 5",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        }
+    },
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": "🎙{volume}%",
+        "format-source-muted": " Muted",
+        "on-click": "pamixer --default-source -t",
+        "on-scroll-up": "pamixer --default-source -i 5",
+        "on-scroll-down": "pamixer --default-source -d 5",
+        "scroll-step": 5
+    }
+}
