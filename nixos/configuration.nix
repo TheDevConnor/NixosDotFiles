@@ -7,6 +7,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./zram.nix
 
       <home-manager/nixos>
     ];
@@ -79,8 +80,7 @@
     shellAliases = {
       ll = "ls -s";
       n = "nvim";
-      update = "sudo nixos-rebuild switch";
-      upgrade = "sudo nixos-rebuild switch --upgrade";
+      update = "sudo nixos-rebuild switch --upgrade";
     };
 
     ohMyZsh = {
@@ -95,7 +95,7 @@
      isNormalUser = true;
      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
      packages = with pkgs; [
-       brave
+        brave
 	git
 	home-manager
 	hyprland
@@ -116,12 +116,12 @@
 	gh
 	slurp
 	wl-clipboard
-       tree
-
-       # Nvim stuff
-       vimPlugins.lualine-nvim
-       vimPlugins.nvim-dap
-       vimPlugins.mason-nvim
+        tree
+	vesktop
+        # Nvim stuff
+        vimPlugins.lualine-nvim
+        vimPlugins.nvim-dap
+        vimPlugins.mason-nvim
      ];
      shell = pkgs.zsh;
   };
@@ -148,14 +148,17 @@
     mesa
     github-desktop
     python3
-    nodejs_21
     nodejs_18
+    pamixer
     lazygit
     clang
     clang-tools_16
     zls
     zig
     libstdcxx5
+    brightnessctl
+    zstd
+    vimPlugins.nvim-treesitter
     xdg-desktop-portal
     xdg-desktop-portal-hyprland
   ];
@@ -189,7 +192,21 @@
   services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
     [org.gnome.desktop.interface]
     gtk-theme='Nordic'
-  ''; 
+  '';
+
+  programs = {
+    gamemode.enable = true;
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      gamescopeSession.enable = true;
+    };
+  };
+
+  nixpkgs.config.allowUnfreePredicated = pkg: builtins.elem (lib.getName pkg) [
+    "steam" "steam-original" "steam-run"
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
