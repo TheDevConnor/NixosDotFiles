@@ -7,15 +7,14 @@
     "gtk-layer-shell": true,
     "height": 0,
     "modules-left": [
-        "custom/terminal",
-        "custom/browser",
-        "custom/ai",
+        // "custom/terminal",
+        // "custom/ai",
         "custom/keyboard",
         "clock",
-        "hyprland/workspaces"
+        "hyprland/window"
     ],
-    "modules-center": ["hyprland/window"],
-    "modules-right": [ 
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": [
         "backlight",
         "pulseaudio",
         "pulseaudio#microphone",
@@ -52,9 +51,13 @@
         "on-click": "bash ~/.config/hypr/scripts/keybindings.sh",
         "signal": 12
     },
+    
     "clock": {
-        "format": "{: %R   %d/%m}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        "format": "{}",
+        "interval": 5,
+        "exec": "date +'%a %d %b %H:%M'",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "signal": 1
     },
     "backlight": {
         "device": "intel_backlight",
@@ -70,11 +73,13 @@
         "disconnected": false
       },
       "format": "{icon}",
-      "on-click": "blueman-manager",
+      "format-alt": "{icon}",
+      "on-click": "blueman-manager", 
       "format-icons": {
-        "connected": "",
-        "disconnected": ""
-      }
+        "connected": "",
+        "disconnected": ""
+      },
+      "scroll-step": 1
     },
     "battery": {
         "states": {
@@ -118,7 +123,7 @@
     "pulseaudio#microphone": {
         "format": "{format_source}",
         "format-source": "🎙{volume}%",
-        "format-source-muted": " Muted",
+        "format-source-muted": "🎙Muted",
         "on-click": "pamixer --default-source -t",
         "on-scroll-up": "pamixer --default-source -i 5",
         "on-scroll-down": "pamixer --default-source -d 5",

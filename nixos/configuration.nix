@@ -85,6 +85,7 @@
 
     ohMyZsh = {
       enable = true;
+      plugins = ["git"];
       theme = "clean";
     };
   };
@@ -106,7 +107,6 @@
 	rofi
 	wlogout
 	swaylock-effects
-	discord
 	obs-studio
 	cinnamon.nemo
 	neofetch
@@ -116,8 +116,11 @@
 	gh
 	slurp
 	wl-clipboard
+	spotify
         tree
 	vesktop
+	swww
+	netflix
         # Nvim stuff
         vimPlugins.lualine-nvim
         vimPlugins.nvim-dap
@@ -147,20 +150,36 @@
     wget
     mesa
     github-desktop
-    python3
+    python311
+    python311Packages.pip
+    (python311.withPackages (ps: with ps; [ pip ]))
     nodejs_18
     pamixer
     lazygit
+    SDL2
+    freetype
+    glew
     clang
     clang-tools_16
     zls
     zig
+    vimPlugins.null-ls-nvim
+    vimPlugins.nvim-lsp-ts-utils
     libstdcxx5
     brightnessctl
     zstd
     vimPlugins.nvim-treesitter
     xdg-desktop-portal
     xdg-desktop-portal-hyprland
+    #music
+    youtube-dl
+    ytui-music
+    ueberzug
+    wallust
+    ytfzf
+    mpv
+    fzf
+    jq
   ];
 
   fonts  = {

@@ -70,6 +70,11 @@ tooltip {
     border: 1px solid #181825;
 }
 
+#backlight {
+    border-radius: 10px 0px 0px 10px;
+    border-right: 0px;
+}
+
 #tray {
     border-radius: 10px;
     margin-right: 10px;
@@ -98,6 +103,7 @@ tooltip {
 
 #custom-terminal {
     color: #f9e2af;
+    border-radius: 10px;
     border-left: 0px;
     border-right: 0px;
 }
@@ -110,12 +116,14 @@ tooltip {
 
 #custom-powermenu {
     color: #f5c2e7;
+    border-radius: 10px 0px 0px 10px;
     border-left: 0px;
     border-right: 0px;
 }
 
 #custom-keyboard {
     color: #f9e2af;
+    border-radius: 10px;
     border-left: 0px;
     border-right: 0px;
     margin-right: 5px;
@@ -142,19 +150,20 @@ tooltip {
 
 #window {
     border-radius: 10px;
-    margin-left: 60px;
+    margin-left: 10px;
     margin-right: 60px;
 }
 
 #clock {
     color: #fab387;
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 10px;
     margin-left: 5px;
     border-right: 0px;
 }
 
 #network {
     color: #f9e2af;
+    border-radius: 10px 0px 0px 10px;
     border-left: 0px;
     border-right: 0px;
 }
